@@ -14,7 +14,11 @@ class Game {
         return chessboard.possibleMovesFor(piece, currentPosition)
     }
 
-    private fun getPieceFromName(pieceName: ChessPiece) : Piece {
-       return Pawn()
+    private fun getPieceFromName(pieceName: ChessPiece): Piece {
+        return when (pieceName) {
+            ChessPiece.PAWN -> Pawn()
+            ChessPiece.QUEEN -> TODO()
+            ChessPiece.KING -> King()
+        }
     }
 }

@@ -57,4 +57,5 @@ class ChessBoardTest {
         val cellPos = CellPosition(9, 1)
         assertFalse(ChessBoard.validateCellPosition(cellPos))
     }
+
 }

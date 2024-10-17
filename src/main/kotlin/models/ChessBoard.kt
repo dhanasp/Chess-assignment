@@ -25,11 +25,10 @@ class ChessBoard {
     fun possibleMovesFor(piece: Piece, currentPosition: String): List<String> {
         if (validateCurrentCellPosition(currentPosition)) {
             val possibleMoves = piece.possibleMoves(CellPosition.from(currentPosition))
-            possibleMoves.map { move -> CellPosition.cellName(move) }
+            return possibleMoves.map { move -> CellPosition.cellName(move) }
         } else {
             throw InvalidCellPosition("Invalid row cell position input")
         }
-        return listOf()
     }
 
 

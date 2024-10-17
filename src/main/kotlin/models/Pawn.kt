@@ -6,10 +6,10 @@ class Pawn : Piece {
 
     override fun possibleMoves(currentPosition: CellPosition): List<CellPosition> {
         println("Calculating possible moves for Pawn at $currentPosition...")
-        return up(currentPosition)
+        return right(currentPosition)
     }
 
-    fun up(currentPosition: CellPosition): List<CellPosition> {
+    private fun right(currentPosition: CellPosition): List<CellPosition> {
         val cellPos = CellPosition(currentPosition.row + 1, currentPosition.column)
         return when {
             ChessBoard.validateCellPosition(cellPos) -> listOf(cellPos)
