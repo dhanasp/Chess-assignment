@@ -6,15 +6,14 @@ import org.example.game.org.example.game.models.InvalidCellPosition
 class ChessBoard {
 
     private var board: Array<Array<String>> = emptyArray()
-    private var gridSize = 8
 
     init {
         board = generateBoard()
     }
 
     private fun generateBoard(): Array<Array<String>> {
-        var generatedBoard = Array(gridSize) { Array(gridSize) { "" } }
-        val columnName = listOf("A", "B", "C", "D", "E", "F", "G", "H")
+        var generatedBoard = Array(GRID_SIZE) { Array(GRID_SIZE) { "" } }
+        val columnName = Columns.entries.map { x -> x.toString() }
         generatedBoard.forEachIndexed { indexCol, col ->
             col.forEachIndexed { index, _ ->
                 col[index] = "${columnName[indexCol]}${index + 1}"
@@ -30,26 +29,36 @@ class ChessBoard {
         } else {
             throw InvalidCellPosition("Invalid row cell position input")
         }
+        return listOf()
+    }
 
+
+    private fun isValidRowPos(currentPosition: String): Boolean {
+        val rowPos = currentPosition.substring(1)
+        return rowPos.toInt() in 1..GRID_SIZE
+    }
+
+    private fun isValidColumnPos(currentPosition: String): Boolean {
+        try {
+            val column = Columns.valueOf(currentPosition[0].toString()).column
+            return column in 1..GRID_SIZE
+        } catch (_: Exception) {
+            throw InvalidCellPosition("Invalid column cell position input")
+        }
     }
 
     private fun validateCurrentCellPosition(currentPosition: String): Boolean {
         return currentPosition.length > 1 && isValidColumnPos(currentPosition) && isValidRowPos(currentPosition)
     }
 
-    private fun isValidRowPos(currentPosition: String): Boolean {
-        val rowPos = currentPosition.substring(1)
-        return rowPos.toInt() in 1..gridSize
-    }
+    fun getBoard(): Array<Array<String>> = board
 
-    private fun isValidColumnPos(currentPosition: String): Boolean {
-        try {
-            val column = Columns.valueOf(currentPosition[0].toString()).column
-            return column in 1..gridSize
-        } catch (_: Exception) {
-            throw InvalidCellPosition("Invalid column cell position input")
+    companion object {
+
+        private const val GRID_SIZE: Int = 8
+
+        fun validateCellPosition(cellPos: CellPosition): Boolean {
+            return cellPos.column in 0..<GRID_SIZE && cellPos.row in 1..GRID_SIZE
         }
     }
-
-    fun getBoard(): Array<Array<String>> = board
 }
