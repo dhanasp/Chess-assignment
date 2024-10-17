@@ -1,7 +1,12 @@
 package models
 
 import org.example.game.models.ChessBoard
+import org.example.game.models.Pawn
+import org.example.game.org.example.game.models.InvalidCellPosition
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
+
 
 class ChessBoardTest {
 
@@ -21,5 +26,21 @@ class ChessBoardTest {
         assert(chessBoard[7][0] == "H1")
         assert(chessBoard[3][5] == "D6")
         assert(chessBoard[7][7] == "H8")
+    }
+
+    @Test
+    fun `should throw error for invalid row Cell Position`() {
+        val exception = assertThrows(InvalidCellPosition::class.java) {
+            ChessBoard().possibleMovesFor(Pawn(), "A9")
+        }
+        assertEquals(exception.message, "Invalid row cell position input")
+    }
+
+    @Test
+    fun `should throw error for invalid column Cell Position`() {
+        val exception = assertThrows(InvalidCellPosition::class.java) {
+            ChessBoard().possibleMovesFor(Pawn(), "K1")
+        }
+        assertEquals(exception.message, "Invalid column cell position input")
     }
 }
