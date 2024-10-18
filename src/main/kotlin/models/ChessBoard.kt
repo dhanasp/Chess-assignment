@@ -6,6 +6,7 @@ import org.example.game.org.example.game.models.InvalidCellPosition
 class ChessBoard {
 
     private var board: Array<Array<String>> = emptyArray()
+    private val GRID_SIZE: Int = 8
 
     init {
         board = generateBoard()
@@ -25,7 +26,9 @@ class ChessBoard {
     fun possibleMovesFor(piece: Piece, currentPosition: String): List<String> {
         if (validateCurrentCellPosition(currentPosition)) {
             val possibleMoves = piece.possibleMoves(CellPosition.from(currentPosition))
-            return possibleMoves.map { move -> CellPosition.cellName(move) }
+            return possibleMoves
+                .filter { cellPosition -> validateCellPosition(cellPosition) }
+                .map { move -> CellPosition.cellName(move) }
         } else {
             throw InvalidCellPosition("Invalid row cell position input")
         }
@@ -46,18 +49,13 @@ class ChessBoard {
         }
     }
 
+    private fun validateCellPosition(cellPos: CellPosition): Boolean {
+        return cellPos.column in 0..<GRID_SIZE && cellPos.row in 1..GRID_SIZE
+    }
+
     private fun validateCurrentCellPosition(currentPosition: String): Boolean {
         return currentPosition.length > 1 && isValidColumnPos(currentPosition) && isValidRowPos(currentPosition)
     }
 
     fun getBoard(): Array<Array<String>> = board
-
-    companion object {
-
-        private const val GRID_SIZE: Int = 8
-
-        fun validateCellPosition(cellPos: CellPosition): Boolean {
-            return cellPos.column in 0..<GRID_SIZE && cellPos.row in 1..GRID_SIZE
-        }
-    }
 }

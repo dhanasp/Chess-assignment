@@ -1,6 +1,7 @@
 package models
 
 import org.example.game.models.ChessBoard
+import org.example.game.models.King
 import org.example.game.models.Pawn
 import org.example.game.org.example.game.models.CellPosition
 import org.example.game.org.example.game.models.InvalidCellPosition
@@ -47,15 +48,10 @@ class ChessBoardTest {
     }
 
     @Test
-    fun `should return true for valid cell position`() {
-        val cellPos = CellPosition(1, 1)
-        assertTrue(ChessBoard.validateCellPosition(cellPos))
+    fun `should return valid cell positions moves for king`() {
+        val possibleMoves = ChessBoard().possibleMovesFor(King(), "D8")
+        val expected = listOf("C8", "C7", "D7", "E7", "E8")
+        assertEquals(possibleMoves.size, expected.size)
+        assertEquals(possibleMoves.toSet(), expected.toSet())
     }
-
-    @Test
-    fun `should return false for valid cell position`() {
-        val cellPos = CellPosition(9, 1)
-        assertFalse(ChessBoard.validateCellPosition(cellPos))
-    }
-
 }
