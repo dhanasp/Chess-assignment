@@ -24,8 +24,8 @@ class ChessBoard {
     }
 
     fun possibleMovesFor(piece: Piece, currentPosition: String): List<String> {
-        if (validateCurrentCellPosition(currentPosition)) {
-            val possibleMoves = piece.possibleMoves(CellPosition.from(currentPosition))
+        if (validateCurrentCell(currentPosition)) {
+            val possibleMoves = piece.possibleMoves(CellPosition.from(currentPosition), GRID_SIZE)
             return possibleMoves
                 .filter { cellPosition -> validateCellPosition(cellPosition) }
                 .map { move -> CellPosition.cellName(move) }
@@ -50,10 +50,10 @@ class ChessBoard {
     }
 
     private fun validateCellPosition(cellPos: CellPosition): Boolean {
-        return cellPos.column in 0..<GRID_SIZE && cellPos.row in 1..GRID_SIZE
+        return cellPos.column in 1..GRID_SIZE && cellPos.row in 1..GRID_SIZE
     }
 
-    private fun validateCurrentCellPosition(currentPosition: String): Boolean {
+    private fun validateCurrentCell(currentPosition: String): Boolean {
         return currentPosition.length > 1 && isValidColumnPos(currentPosition) && isValidRowPos(currentPosition)
     }
 
