@@ -4,6 +4,9 @@ import org.example.game.models.ChessPiece
 import org.example.game.models.Game
 
 fun main() {
-    val movements = Game().getAllPossibleMovesFor(ChessPiece.QUEEN, "C2")
-    println("Possible movements for Knight at E4: $movements")
+
+    val currentPosition = "G1"
+    val chessPiece = ChessPiece.PAWN
+    val movements = Game().getAllPossibleMovesFor(chessPiece, currentPosition)
+    println("Possible movements for ${chessPiece.name} at $currentPosition: $movements")
 }
