@@ -17,7 +17,7 @@ class Game {
     private fun getPieceFromName(pieceName: ChessPiece): Piece {
         return when (pieceName) {
             ChessPiece.PAWN -> Pawn()
-            ChessPiece.QUEEN -> TODO()
+            ChessPiece.QUEEN -> Queen()
             ChessPiece.KING -> King()
         }
     }

@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Assertions.*
 
 class PawnTest {
 
+    val gridSize = 8
+
     @Test
     fun `should return up move for given cell position`() {
         val pawn = Pawn()
@@ -19,13 +21,13 @@ class PawnTest {
     fun `should not return up move for given cell position in case its in the end`() {
         val pawn = Pawn()
         val positionsForUpMovement = pawn.possibleMoves(CellPosition(8, 2))
-        assertEquals(positionsForUpMovement, listOf(CellPosition(9,2)))
+        assertEquals(positionsForUpMovement, listOf(CellPosition(9, 2)))
     }
 
     @Test
     fun `should not return up move for given cell position in case invalid column`() {
         val pawn = Pawn()
         val positionsForUpMovement = pawn.possibleMoves(CellPosition(8, 9))
-        assertEquals(positionsForUpMovement, listOf(CellPosition(9,9)))
+        assertEquals(positionsForUpMovement, listOf(CellPosition(9, 9)))
     }
 }

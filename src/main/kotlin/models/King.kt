@@ -15,7 +15,7 @@ class King : Piece {
             upRight(currentPosition),
             downLeft(currentPosition),
             downRight(currentPosition)
-        )
+        ).filter { cellPosition -> ChessBoard.validateCellPos(cellPosition) }
     }
 
     private fun downRight(currentPosition: CellPosition): CellPosition {
