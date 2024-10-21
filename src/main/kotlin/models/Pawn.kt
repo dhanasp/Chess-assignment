@@ -10,6 +10,6 @@ class Pawn : Piece {
     }
 
     private fun right(currentPosition: CellPosition): CellPosition {
-        return CellPosition(currentPosition.row + 1, currentPosition.column)
+        return CellPosition(currentPosition.column, currentPosition.row + 1)
     }
 }

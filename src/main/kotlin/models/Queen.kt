@@ -22,14 +22,14 @@ class Queen : Piece {
     private fun upRight(currentPosition: CellPosition): List<CellPosition> {
         return (1..<currentPosition.column).map { i ->
             CellPosition(
-                currentPosition.row + i,
-                currentPosition.column - i
+                currentPosition.column - i,
+                currentPosition.row + i
             )
         }
     }
 
     private fun downLeft(currentPosition: CellPosition): List<CellPosition> = (1..<currentPosition.row).map { i ->
-        CellPosition(currentPosition.row - i, currentPosition.column + i)
+        CellPosition(currentPosition.column + i, currentPosition.row - i)
     }
 
     private fun downRight(
@@ -40,8 +40,8 @@ class Queen : Piece {
         return (1..loopcount)
             .map { i ->
                 CellPosition(
-                    currentPosition.row + i,
-                    currentPosition.column + i
+                    currentPosition.column + i,
+                    currentPosition.row + i
                 )
             }
     }
@@ -49,23 +49,23 @@ class Queen : Piece {
     private fun upLeft(currentPosition: CellPosition): List<CellPosition> {
         return (1..<currentPosition.column).map { i ->
             CellPosition(
-                currentPosition.row - i,
-                currentPosition.column - i
+                currentPosition.column - i,
+                currentPosition.row - i
             )
         }
     }
 
     private fun horizontalMoves(currentPosition: CellPosition): List<CellPosition> {
         val columns = Columns.entries.size
-        val left = (1..<currentPosition.row).map { i -> CellPosition(i, currentPosition.column) }
-        val right = (currentPosition.row + 1..columns).map { i -> CellPosition(i, currentPosition.column) }
+        val left = (1..<currentPosition.row).map { i -> CellPosition(currentPosition.column, i) }
+        val right = (currentPosition.row + 1..columns).map { i -> CellPosition(currentPosition.column, i) }
         return left.plus(right)
     }
 
     private fun verticalMoves(currentPosition: CellPosition): List<CellPosition> {
         val columns = Columns.entries.size
-        val up = (1..<currentPosition.column).map { i -> CellPosition(currentPosition.row, i) }
-        val down = (currentPosition.column + 1..columns).map { i -> CellPosition(currentPosition.row, i) }
+        val up = (1..<currentPosition.column).map { i -> CellPosition(i, currentPosition.row) }
+        val down = (currentPosition.column + 1..columns).map { i -> CellPosition(i, currentPosition.row) }
         return up.plus(down)
     }
 

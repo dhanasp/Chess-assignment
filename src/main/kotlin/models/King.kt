@@ -19,35 +19,35 @@ class King : Piece {
     }
 
     private fun downRight(currentPosition: CellPosition): CellPosition {
-        return CellPosition(currentPosition.row + 1, currentPosition.column + 1)
+        return CellPosition(currentPosition.column + 1, currentPosition.row + 1)
     }
 
     private fun downLeft(currentPosition: CellPosition): CellPosition {
-        return CellPosition(currentPosition.row - 1, currentPosition.column + 1)
+        return CellPosition(currentPosition.column + 1, currentPosition.row - 1)
     }
 
     private fun upRight(currentPosition: CellPosition): CellPosition {
-        return CellPosition(currentPosition.row + 1, currentPosition.column - 1)
+        return CellPosition(currentPosition.column - 1, currentPosition.row + 1)
     }
 
     private fun upLeft(currentPosition: CellPosition): CellPosition {
-        return CellPosition(currentPosition.row - 1, currentPosition.column - 1)
+        return CellPosition(currentPosition.column - 1, currentPosition.row - 1)
     }
 
 
     private fun up(currentPosition: CellPosition): CellPosition {
-        return CellPosition(currentPosition.row, currentPosition.column - 1)
+        return CellPosition(currentPosition.column - 1, currentPosition.row)
     }
 
     private fun down(currentPosition: CellPosition): CellPosition {
-        return CellPosition(currentPosition.row, currentPosition.column + 1)
+        return CellPosition(currentPosition.column + 1, currentPosition.row)
     }
 
     private fun left(currentPosition: CellPosition): CellPosition {
-        return CellPosition(currentPosition.row - 1, currentPosition.column)
+        return CellPosition(currentPosition.column, currentPosition.row - 1)
     }
 
     private fun right(currentPosition: CellPosition): CellPosition {
-        return CellPosition(currentPosition.row + 1, currentPosition.column)
+        return CellPosition(currentPosition.column, currentPosition.row + 1)
     }
 }
